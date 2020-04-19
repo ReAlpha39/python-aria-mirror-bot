@@ -3,6 +3,7 @@ class _BotCommands:
         self.StartCommand = 'start'
         self.MirrorCommand = 'mirror'
         self.SevenZMirrorCommand = '7zmirror'
+        self.UnzipMirrorCommand = 'unzipmirror'
         self.TarMirrorCommand = 'tarmirror'
         self.CancelMirror = 'cancel'
         self.CancelAllCommand = 'cancelall'
