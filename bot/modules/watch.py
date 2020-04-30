@@ -10,7 +10,7 @@ from bot.helper.telegram_helper.filters import CustomFilters
 import threading
 
 
-def _watch(bot: Bot, update: Update, args: list, isTar=False, is7z=False):
+def _watch(bot: Bot, update: Update, args: list, isTar=False, isZip=False):
     try:
         link = args[0]
     except IndexError:
@@ -22,7 +22,7 @@ def _watch(bot: Bot, update: Update, args: list, isTar=False, is7z=False):
     else:
         tag = None
 
-    listener = MirrorListener(bot, update, isTar, tag, is7z)
+    listener = MirrorListener(bot, update, isTar, tag, isZip)
     ydl = YoutubeDLHelper(listener)
     threading.Thread(target=ydl.add_download,args=(link, f'{DOWNLOAD_DIR}{listener.uid}')).start()
     sendStatusMessage(update, bot)
@@ -32,11 +32,11 @@ def _watch(bot: Bot, update: Update, args: list, isTar=False, is7z=False):
 
 @run_async
 def watchTar(update, context):
-    _watch(context.bot, update, context.args, True)
+    _watch(context.bot, update, context.args, isTar=True)
 
 @run_async
-def watch7z(update, context):
-    _watch(context.bot, update, context.args, True)
+def watchZip(update, context):
+    _watch(context.bot, update, context.args, isZip=True)
 
 def watch(update, context):
     _watch(context.bot, update, context.args)
@@ -45,12 +45,12 @@ def watch(update, context):
 mirror_handler = CommandHandler(BotCommands.WatchCommand, watch,
                                 pass_args=True,
                                 filters=CustomFilters.authorized_chat | CustomFilters.authorized_user)
-seven_z_mirror_handler = CommandHandler(BotCommands.SevenZWatchCommand, watch7z,
+zip_mirror_handler = CommandHandler(BotCommands.ZipWatchCommand, watchZip,
                                     pass_args=True,
                                     filters=CustomFilters.authorized_chat | CustomFilters.authorized_user)
 tar_mirror_handler = CommandHandler(BotCommands.TarWatchCommand, watchTar,
                                     pass_args=True,
                                     filters=CustomFilters.authorized_chat | CustomFilters.authorized_user)
 dispatcher.add_handler(mirror_handler)
-dispatcher.add_handler(seven_z_mirror_handler)
+dispatcher.add_handler(zip_mirror_handler)
 dispatcher.add_handler(tar_mirror_handler)

@@ -66,11 +66,13 @@ def bot_help(update, context):
 
 /{BotCommands.UnzipMirrorCommand} [download_url][magnet_link] : starts mirroring and if downloaded file is any archive , extracts it to google drive
 
-/{BotCommands.SevenZMirrorCommand} [download_url][magnet_link]: start mirroring and upload the archived (.7z) version of the download
+/{BotCommands.ZipMirrorCommand} [download_url][magnet_link]: start mirroring and upload the archived (.zip) version of the download
 
 /{BotCommands.TarMirrorCommand} [download_url][magnet_link]: start mirroring and upload the archived (.tar) version of the download
 
 /{BotCommands.WatchCommand} [youtube-dl supported link]: Mirror through youtube-dl
+
+/{BotCommands.ZipWatchCommand} [youtube-dl supported link]: Mirror through youtube-dl and zip before uploading
 
 /{BotCommands.TarWatchCommand} [youtube-dl supported link]: Mirror through youtube-dl and tar before uploading
 

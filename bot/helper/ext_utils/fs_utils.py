@@ -5,7 +5,7 @@ import os
 import pathlib
 import magic
 import tarfile
-import py7zr
+import zipfile
 
 
 def clean_download(path: str):
@@ -51,14 +51,14 @@ def tar(org_path):
     tar.close()
     return tar_path
 
-def seven_zip(org_path):
-    seven_zip_path = org_path + ".7z"
+def zip(org_path):
+    zip_path = org_path + ".zip"
     path = pathlib.PurePath(org_path)
-    LOGGER.info(f'7z: orig_path: {org_path}, 7z_path: {seven_zip_path}')
-    seven_zip = py7zr.SevenZipFile(seven_zip_path, "w")
-    seven_zip.writeall(org_path, arcname=path.name)
-    seven_zip.close()
-    return seven_zip_path
+    LOGGER.info(f'zip: orig_path: {org_path}, zip_path: {zip_path}')
+    zipF = zipfile.ZipFile(zip_path, "w")
+    zipF.write(org_path, arcname=path.name)
+    zipF.close()
+    return zip_path
 
 
 def unzip(orig_path: str):
