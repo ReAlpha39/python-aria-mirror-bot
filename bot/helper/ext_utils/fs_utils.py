@@ -55,7 +55,7 @@ def seven_zip(org_path):
     seven_zip_path = org_path + ".7z"
     path = pathlib.PurePath(org_path)
     LOGGER.info(f'7z: orig_path: {org_path}, 7z_path: {seven_zip_path}')
-    seven_zip = py7zr.SevenZipFile(org_path, "w")
+    seven_zip = py7zr.SevenZipFile(seven_zip_path, "w")
     seven_zip.writeall(org_path, arcname=path.name)
     seven_zip.close()
     return seven_zip_path
