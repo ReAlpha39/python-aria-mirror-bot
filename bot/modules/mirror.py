@@ -225,11 +225,11 @@ def mirror(update, context):
 
 @run_async
 def tar_mirror(update, context):
-    _mirror(context.bot, update, True)
+    _mirror(context.bot, update, isTar=True)
 
 @run_async
 def seven_zip_mirror(update, context):
-    _mirror(context.bot, update, True)
+    _mirror(context.bot, update, is7z=True)
 
 @run_async
 def unzip_mirror(update, bot):
