@@ -64,6 +64,8 @@ def bot_help(update, context):
 
 /{BotCommands.MirrorCommand} [download_url][magnet_link]: Start mirroring the link to google drive
 
+/{BotCommands.SevenZMirrorCommand} [download_url][magnet_link]: start mirroring and upload the archived (.7z) version of the download
+
 /{BotCommands.TarMirrorCommand} [download_url][magnet_link]: start mirroring and upload the archived (.tar) version of the download
 
 /{BotCommands.WatchCommand} [youtube-dl supported link]: Mirror through youtube-dl 
