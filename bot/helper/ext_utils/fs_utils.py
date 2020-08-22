@@ -6,6 +6,7 @@ import pathlib
 import magic
 import tarfile
 import zipfile
+from .exceptions import NotSupportedExtractionArchive
 
 
 def clean_download(path: str):
@@ -73,6 +74,31 @@ def unzip(orig_path: str):
     LOGGER.info(f'unzip: orig_path: {orig_path} {os.path.join(root, base)} ')
     shutil.unpack_archive(orig_path, os.path.join(root, base))
     return os.path.join(root, base)
+
+
+def get_base_name(orig_path: str):
+    if orig_path.endswith(".tar.bz2"):
+        return orig_path.replace(".tar.bz2", "")
+    elif orig_path.endswith(".tar.gz"):
+        return orig_path.replace(".tar.gz", "")
+    elif orig_path.endswith(".bz2"):
+        return orig_path.replace(".bz2", "")
+    elif orig_path.endswith(".gz"):
+        return orig_path.replace(".gz", "")
+    elif orig_path.endswith(".tar"):
+        return orig_path.replace(".tar", "")
+    elif orig_path.endswith(".tbz2"):
+        return orig_path.replace("tbz2", "")
+    elif orig_path.endswith(".tgz"):
+        return orig_path.replace(".tgz", "")
+    elif orig_path.endswith(".zip"):
+        return orig_path.replace(".zip", "")
+    elif orig_path.endswith(".Z"):
+        return orig_path.replace(".Z", "")
+    elif orig_path.endswith(".rar"):
+        return orig_path.replace(".rar", "")
+    else:
+        raise NotSupportedExtractionArchive('File format not supported for extraction')
 
 
 def get_mime_type(file_path):

@@ -19,6 +19,7 @@ class MirrorStatus:
     STATUS_FAILED = "Failed. Cleaning download"
     STATUS_CANCELLED = "Cancelled"
     STATUS_ARCHIVING = "Archiving"
+    STATUS_EXTRACTING = "Extracting"
 
 
 PROGRESS_MAX_SIZE = 100 // 8
@@ -139,6 +140,11 @@ def is_magnet(url: str):
         return True
     return False
 
+
+def is_mega_link(url: str):
+    return "mega.nz" in url
+
+
 def new_thread(fn):
     """To use as decorator to make a function call threaded.
     Needs import
@@ -147,4 +153,5 @@ def new_thread(fn):
         thread = threading.Thread(target=fn, args=args, kwargs=kwargs)
         thread.start()
         return thread
+
     return wrapper
